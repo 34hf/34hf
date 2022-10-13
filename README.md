@@ -1,10 +1,21 @@
-- 👋 Hi, I’m @34hf
-- 👀 I’m interested in ...
-- 🌱 I’m currently learning ...
-- 💞️ I’m looking to collaborate on ...
-- 📫 How to reach me ...
+// In Package Manager, run:
+// Install-Package Twilio.AspNet.Mvc -DependencyVersion HighestMinor
 
-<!---
-34hf/34hf is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-You can click the Preview link to take a look at your changes.
---->
+using System.Web.Mvc;
+using Twilio.AspNet.Mvc;
+using Twilio.TwiML;
+
+namespace YourNewWebProject.Controllers
+{
+    public class SmsController : TwilioController
+    {
+        [HttpPost]
+        public TwiMLResult Index()
+        {
+            var messagingResponse = new MessagingResponse();
+            messagingResponse.Message("The Robots are coming! Head for the hills!");
+
+            return TwiML(messagingResponse);
+        }
+    }
+}
